@@ -1,21 +1,16 @@
 version: 2.1
 
 jobs:
-  hello:
+  test:
     docker:
-      - image: cimg/base:current
+      - image: cimg/node:20.11
     steps:
       - checkout
-      - run: echo "Hello CircleCI!"
-      - run:
-          name: Show environment
-          command: |
-            uname -a
-            pwd
-            ls -la
+      - run: node --version
+      - run: npm ci
+      - run: npm test
 
 workflows:
   main:
     jobs:
-      - hello
-
+      - test
