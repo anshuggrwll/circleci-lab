@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  hello:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run: echo "Hello CircleCI!"
+      - run:
+          name: Show environment
+          command: |
+            uname -a
+            pwd
+            ls -la
+
+workflows:
+  main:
+    jobs:
+      - hello
+
